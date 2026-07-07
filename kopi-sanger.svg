@@ -1,0 +1,33 @@
+<svg viewBox="0 0 200 160" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <radialGradient id="bgk" cx="50%" cy="25%" r="85%">
+      <stop offset="0%" stop-color="#F3DDC3"/>
+      <stop offset="100%" stop-color="#D9A97A"/>
+    </radialGradient>
+    <linearGradient id="glass" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.95"/>
+      <stop offset="100%" stop-color="#EFE7D6" stop-opacity="0.85"/>
+    </linearGradient>
+    <linearGradient id="coffee" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#8B5A32"/>
+      <stop offset="100%" stop-color="#4A2C15"/>
+    </linearGradient>
+    <filter id="soft2" x="-40%" y="-40%" width="180%" height="180%">
+      <feDropShadow dx="0" dy="5" stdDeviation="4" flood-color="#2b1a0a" flood-opacity="0.3"/>
+    </filter>
+  </defs>
+  <rect width="200" height="160" fill="url(#bgk)"/>
+  <ellipse cx="100" cy="140" rx="60" ry="9" fill="#3a2410" opacity="0.2"/>
+  <g filter="url(#soft2)">
+    <path d="M76 54 L124 54 L118 132 Q100 140 82 132 Z" fill="url(#glass)" stroke="#1E2A44" stroke-width="3"/>
+    <path d="M82 72 L118 72 L113 122 Q100 128 87 122 Z" fill="url(#coffee)"/>
+    <ellipse cx="100" cy="72" rx="18" ry="6" fill="#F6EFDF"/>
+    <ellipse cx="100" cy="72" rx="18" ry="6" fill="none" stroke="#C89B3C" stroke-width="1.5"/>
+  </g>
+  <ellipse cx="93" cy="80" rx="5" ry="8" fill="#ffffff" opacity="0.25"/>
+  <g stroke="#5B564A" stroke-width="3" fill="none" stroke-linecap="round" opacity="0.85">
+    <path d="M62 10 Q58 22 66 28 Q58 34 64 44"/>
+    <path d="M100 8 Q96 20 104 26 Q96 32 102 42"/>
+    <path d="M138 10 Q134 22 142 28 Q134 34 140 44"/>
+  </g>
+</svg>

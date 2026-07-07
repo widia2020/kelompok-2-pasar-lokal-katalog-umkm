@@ -1,0 +1,30 @@
+<svg viewBox="0 0 200 160" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <radialGradient id="bgg" cx="50%" cy="26%" r="85%">
+      <stop offset="0%" stop-color="#FBEFC9"/>
+      <stop offset="100%" stop-color="#E6C877"/>
+    </radialGradient>
+    <linearGradient id="gold1" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#F0D48F"/>
+      <stop offset="100%" stop-color="#C89B3C"/>
+    </linearGradient>
+    <linearGradient id="woodr" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#8A5A34"/>
+      <stop offset="100%" stop-color="#4A2C15"/>
+    </linearGradient>
+    <filter id="softg" x="-40%" y="-40%" width="180%" height="180%">
+      <feDropShadow dx="0" dy="4" stdDeviation="3" flood-color="#5a3a15" flood-opacity="0.3"/>
+    </filter>
+  </defs>
+  <rect width="200" height="160" fill="url(#bgg)"/>
+  <ellipse cx="100" cy="136" rx="52" ry="9" fill="#5a3a15" opacity="0.18"/>
+  <g filter="url(#softg)">
+    <circle cx="100" cy="82" r="42" fill="none" stroke="url(#gold1)" stroke-width="10"/>
+  </g>
+  <circle cx="100" cy="82" r="42" fill="none" stroke="#A6432B" stroke-width="3" stroke-dasharray="6 6"/>
+  <g filter="url(#softg)">
+    <path d="M100 50 L106 78 L100 114 L94 78 Z" fill="url(#woodr)" stroke="#3F3122" stroke-width="1.5"/>
+  </g>
+  <rect x="94" y="70" width="12" height="10" fill="#E4C878" stroke="#3F3122" stroke-width="1"/>
+  <path d="M76 55 A42 42 0 0 1 124 55" fill="none" stroke="#FFF4D6" stroke-width="4" opacity="0.4"/>
+</svg>

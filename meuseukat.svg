@@ -1,0 +1,27 @@
+<svg viewBox="0 0 200 160" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <radialGradient id="bgm" cx="50%" cy="28%" r="85%">
+      <stop offset="0%" stop-color="#FBEFC9"/>
+      <stop offset="100%" stop-color="#E6C877"/>
+    </radialGradient>
+    <linearGradient id="roll" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#FCF3E3"/>
+      <stop offset="100%" stop-color="#EBD9B8"/>
+    </linearGradient>
+    <filter id="softm" x="-40%" y="-40%" width="180%" height="180%">
+      <feDropShadow dx="0" dy="4" stdDeviation="4" flood-color="#5a3a15" flood-opacity="0.28"/>
+    </filter>
+  </defs>
+  <rect width="200" height="160" fill="url(#bgm)"/>
+  <ellipse cx="100" cy="112" rx="62" ry="16" fill="#8a5a20" opacity="0.18"/>
+  <ellipse cx="100" cy="95" rx="55" ry="18" fill="#C89B3C"/>
+  <g filter="url(#softm)">
+    <ellipse cx="58" cy="80" rx="20" ry="26" fill="url(#roll)" stroke="#A6432B" stroke-width="2.5"/>
+    <ellipse cx="100" cy="74" rx="20" ry="26" fill="url(#roll)" stroke="#A6432B" stroke-width="2.5"/>
+    <ellipse cx="142" cy="80" rx="20" ry="26" fill="url(#roll)" stroke="#A6432B" stroke-width="2.5"/>
+  </g>
+  <path d="M58 58 Q68 66 58 80 Q48 94 58 102" fill="none" stroke="#C89B3C" stroke-width="2.5"/>
+  <path d="M100 52 Q110 60 100 74 Q90 88 100 96" fill="none" stroke="#C89B3C" stroke-width="2.5"/>
+  <path d="M142 58 Q152 66 142 80 Q132 94 142 102" fill="none" stroke="#C89B3C" stroke-width="2.5"/>
+  <ellipse cx="94" cy="64" rx="6" ry="10" fill="#ffffff" opacity="0.4"/>
+</svg>

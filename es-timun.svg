@@ -1,0 +1,31 @@
+<svg viewBox="0 0 200 160" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <radialGradient id="bge" cx="50%" cy="26%" r="85%">
+      <stop offset="0%" stop-color="#E6F2EF"/>
+      <stop offset="100%" stop-color="#B9D8D2"/>
+    </radialGradient>
+    <linearGradient id="glasse" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.95"/>
+      <stop offset="100%" stop-color="#EAF3F1" stop-opacity="0.85"/>
+    </linearGradient>
+    <linearGradient id="syr" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#E0554C"/>
+      <stop offset="100%" stop-color="#A02F28"/>
+    </linearGradient>
+    <filter id="softe" x="-40%" y="-40%" width="180%" height="180%">
+      <feDropShadow dx="0" dy="5" stdDeviation="4" flood-color="#1c3229" flood-opacity="0.28"/>
+    </filter>
+  </defs>
+  <rect width="200" height="160" fill="url(#bge)"/>
+  <ellipse cx="100" cy="142" rx="42" ry="8" fill="#1c3229" opacity="0.18"/>
+  <g filter="url(#softe)">
+    <path d="M74 48 L126 48 L118 138 L82 138 Z" fill="url(#glasse)" stroke="#3F6B4F" stroke-width="3"/>
+    <path d="M78 90 L122 90 L116 134 L84 134 Z" fill="url(#syr)"/>
+  </g>
+  <path d="M82 78 L88 84 L82 90 L76 84 Z" fill="#FFFFFF" stroke="#CFE3E0" stroke-width="1"/>
+  <path d="M100 70 L106 76 L100 82 L94 76 Z" fill="#FFFFFF" stroke="#CFE3E0" stroke-width="1"/>
+  <path d="M114 80 L120 86 L114 92 L108 86 Z" fill="#FFFFFF" stroke="#CFE3E0" stroke-width="1"/>
+  <path d="M92 58 Q100 66 92 74 Q84 82 92 90" fill="none" stroke="#3F6B4F" stroke-width="4" stroke-linecap="round"/>
+  <line x1="112" y1="18" x2="100" y2="70" stroke="#3F6B4F" stroke-width="4" stroke-linecap="round"/>
+  <ellipse cx="88" cy="100" rx="4" ry="10" fill="#ffffff" opacity="0.3"/>
+</svg>

@@ -1,0 +1,26 @@
+<svg viewBox="0 0 200 160" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <radialGradient id="bgks" cx="50%" cy="26%" r="85%">
+      <stop offset="0%" stop-color="#E6F2EF"/>
+      <stop offset="100%" stop-color="#B9D8D2"/>
+    </radialGradient>
+    <linearGradient id="tshirt" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#FFFFFF"/>
+      <stop offset="100%" stop-color="#EFE7D6"/>
+    </linearGradient>
+    <filter id="softks" x="-40%" y="-40%" width="180%" height="180%">
+      <feDropShadow dx="0" dy="5" stdDeviation="4" flood-color="#1c3229" flood-opacity="0.25"/>
+    </filter>
+  </defs>
+  <rect width="200" height="160" fill="url(#bgks)"/>
+  <ellipse cx="100" cy="142" rx="62" ry="8" fill="#1c3229" opacity="0.15"/>
+  <g filter="url(#softks)">
+    <path d="M70 46 L90 38 L100 46 L110 38 L130 46 L142 62 L128 74 L122 68 L122 138 L78 138 L78 68 L72 74 L58 62 Z" fill="url(#tshirt)" stroke="#1E2A44" stroke-width="3"/>
+  </g>
+  <g stroke="#3F6B4F" stroke-width="2" fill="none">
+    <path d="M92 92 Q100 84 108 92 L108 118 Q100 124 92 118 Z"/>
+    <line x1="88" y1="100" x2="112" y2="100"/>
+    <line x1="88" y1="108" x2="112" y2="108"/>
+  </g>
+  <ellipse cx="88" cy="60" rx="6" ry="18" fill="#ffffff" opacity="0.4"/>
+</svg>
