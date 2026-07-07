@@ -1,0 +1,484 @@
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap');
+
+:root{
+  --navy: #1E2A44;
+  --navy-light: #2B3B5E;
+  --gold: #C89B3C;
+  --gold-light: #E4C878;
+  --rust: #A6432B;
+  --paper: #EFEADD;
+  --paper-white: #FBF9F3;
+  --green: #3F6B4F;
+  --red: #9C3D34;
+  --ink: #24211B;
+  --ink-soft: #5B564A;
+  --radius: 18px;
+  --shadow: 0 10px 30px rgba(30,42,68,0.10);
+}
+
+/* ---------- MODE GELAP (MALAM) ---------- */
+[data-theme="dark"]{
+  --gold: #D9AE55;
+  --gold-light: #E9CD87;
+  --rust: #E28461;
+  --paper: #12141c;
+  --paper-white: #1C2130;
+  --green: #6FBE8C;
+  --red: #E28379;
+  --ink: #ECE9DF;
+  --ink-soft: #9C9A8D;
+  --shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  margin:0;
+  background:var(--paper);
+  color:var(--ink);
+  font-family:'Plus Jakarta Sans', sans-serif;
+  line-height:1.5;
+  transition:background-color .3s ease, color .3s ease;
+}
+h1,h2,h3{
+  font-family:'Fraunces', serif;
+  margin:0 0 .4em 0;
+  color:var(--navy);
+}
+.mono{font-family:'JetBrains Mono', monospace;}
+img{max-width:100%;display:block;}
+button{font-family:inherit;cursor:pointer;border:none;}
+a{color:inherit;}
+.wrap{max-width:1180px;margin:0 auto;padding:0 24px;}
+
+/* ---------- HEADER ---------- */
+.site-header{
+  background:var(--navy);
+  color:var(--paper-white);
+  position:sticky;top:0;z-index:50;
+  box-shadow:0 2px 12px rgba(0,0,0,0.15);
+}
+.site-header .wrap{
+  display:flex;align-items:center;justify-content:space-between;
+  padding-top:14px;padding-bottom:14px;
+}
+.brand{display:flex;align-items:center;gap:10px;font-family:'Fraunces',serif;font-weight:700;font-size:1.3rem;color:var(--paper-white);}
+.brand .stamp-mini{
+  width:34px;height:34px;border-radius:50%;
+  border:2px solid var(--gold-light);
+  display:flex;align-items:center;justify-content:center;
+  font-family:'JetBrains Mono',monospace;font-size:.65rem;font-weight:700;
+  color:var(--gold-light);transform:rotate(-8deg);
+}
+.main-nav{display:flex;gap:24px;font-weight:600;font-size:.9rem;}
+.main-nav a{text-decoration:none;color:var(--paper-white);opacity:.75;transition:opacity .2s;padding:6px 2px;border-bottom:2px solid transparent;}
+.main-nav a:hover{opacity:1;}
+.main-nav a.active{opacity:1;border-bottom-color:var(--gold-light);color:var(--gold-light);}
+.nav-badge{
+  background:var(--rust);color:#fff;font-size:.68rem;font-weight:700;
+  min-width:17px;height:17px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;
+  padding:0 4px;vertical-align:middle;margin-left:2px;
+}
+.hamburger{display:none;background:none;color:#fff;font-size:1.4rem;padding:4px 8px;}
+
+/* ---------- TOMBOL TOGGLE MODE GELAP/TERANG ---------- */
+.theme-toggle{
+  width:38px;height:38px;flex-shrink:0;border-radius:50%;
+  background:rgba(255,255,255,.08);
+  border:1.5px solid rgba(255,255,255,.28);
+  color:var(--paper-white);
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.05rem;margin-left:10px;
+  transition:background .2s, transform .35s;
+}
+.theme-toggle:hover{background:rgba(255,255,255,.18);transform:rotate(18deg);}
+.theme-toggle:active{transform:rotate(18deg) scale(.92);}
+
+/* ---------- PAGE SYSTEM (6 Beranda) ---------- */
+.page{display:none;}
+.page.active{display:block;animation:fadeIn .25s ease;}
+@keyframes fadeIn{from{opacity:0;transform:translateY(6px);}to{opacity:1;transform:translateY(0);}}
+.chip-link{background:var(--navy);color:#fff;border-color:var(--navy);}
+.chip-link:hover{background:var(--navy-light);}
+
+/* ---------- HERO ---------- */
+.hero{
+  position:relative;overflow:hidden;
+  background:linear-gradient(160deg, var(--navy) 0%, var(--navy-light) 55%, #3a4d78 100%);
+  color:var(--paper-white);
+}
+.hero .wrap{
+  display:grid;grid-template-columns:1.1fr .9fr;gap:40px;
+  padding-top:64px;padding-bottom:56px;align-items:center;position:relative;z-index:2;
+}
+.hero-eyebrow{
+  display:inline-block;font-family:'JetBrains Mono',monospace;font-size:.78rem;
+  letter-spacing:.08em;color:var(--gold-light);
+  border:1px solid rgba(228,200,120,.5);padding:4px 12px;border-radius:999px;margin-bottom:18px;
+}
+.hero h1{
+  color:#fff;font-size:2.6rem;line-height:1.12;margin-bottom:16px;
+}
+.hero h1 em{color:var(--gold-light);font-style:normal;}
+.hero p{color:rgba(251,249,243,.82);font-size:1.05rem;max-width:46ch;margin-bottom:28px;}
+
+.search-box{
+  background:var(--paper-white);border-radius:16px;padding:8px;
+  display:flex;gap:8px;box-shadow:var(--shadow);max-width:480px;
+}
+.search-box input{
+  flex:1;border:none;outline:none;background:transparent;
+  padding:12px 14px;font-size:.98rem;color:var(--ink);font-family:inherit;
+}
+.search-box button{
+  background:var(--rust);color:#fff;padding:0 22px;border-radius:11px;font-weight:600;
+  transition:background .2s;
+}
+.search-box button:hover{background:#8c3a25;}
+
+.hero-stamps{position:relative;height:280px;}
+.stamp-decor{
+  position:absolute;border-radius:50%;border:3px solid rgba(228,200,120,.55);
+  display:flex;align-items:center;justify-content:center;text-align:center;
+  font-family:'JetBrains Mono',monospace;color:var(--gold-light);
+  text-transform:uppercase;letter-spacing:.05em;
+}
+.stamp-decor.s1{width:190px;height:190px;top:0;right:40px;font-size:.72rem;transform:rotate(-10deg);padding:18px;}
+.stamp-decor.s2{width:130px;height:130px;bottom:0;right:180px;font-size:.62rem;transform:rotate(8deg);border-style:dashed;padding:14px;color:rgba(251,249,243,.7);border-color:rgba(251,249,243,.4);}
+.stamp-decor.s3{width:90px;height:90px;bottom:30px;right:0;font-size:.58rem;transform:rotate(-16deg);color:var(--rust);border-color:var(--rust);background:rgba(251,249,243,.08);}
+
+/* ---------- STAT ROW (Beranda) ---------- */
+.stat-row{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:20px;
+}
+.stat-box{
+  background:var(--paper-white);border-radius:16px;padding:20px 18px;
+  box-shadow:var(--shadow);text-align:center;
+}
+.stat-box .num{font-family:'Fraunces',serif;font-size:2rem;color:var(--rust);display:block;}
+.stat-box .lbl{font-size:.8rem;color:var(--ink-soft);font-family:'JetBrains Mono',monospace;text-transform:uppercase;letter-spacing:.04em;}
+
+/* ---------- FILTER BAR ---------- */
+.filter-bar-inline{
+  background:var(--paper-white);border-radius:18px;padding:18px 20px;
+  box-shadow:var(--shadow);margin-bottom:30px;
+  display:flex;flex-wrap:wrap;gap:16px 22px;align-items:center;
+}
+.filter-bar-inline .search-box{flex-basis:100%;max-width:none;}
+.filter-group{display:flex;flex-wrap:wrap;gap:8px;align-items:center;}
+.filter-label{
+  font-family:'JetBrains Mono',monospace;font-size:.72rem;color:var(--ink-soft);
+  text-transform:uppercase;letter-spacing:.06em;margin-right:4px;
+}
+.chip{
+  background:var(--paper);border:1px solid rgba(30,42,68,.12);color:var(--ink);
+  padding:7px 15px;border-radius:999px;font-size:.85rem;font-weight:600;
+  transition:all .18s;
+}
+.chip:hover{border-color:var(--gold);}
+.chip.active{background:var(--navy);color:#fff;border-color:var(--navy);}
+.result-count{margin-left:auto;font-size:.85rem;color:var(--ink-soft);}
+.result-count strong{color:var(--navy);}
+
+/* ---------- PRODUCTS ---------- */
+.section{padding:56px 0;}
+.section-head{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:30px;flex-wrap:wrap;gap:10px;}
+.section-head p{color:var(--ink-soft);margin:0;max-width:52ch;}
+
+.product-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:26px;
+}
+.card{
+  background:var(--paper-white);border-radius:var(--radius);overflow:hidden;
+  box-shadow:var(--shadow);position:relative;display:flex;flex-direction:column;
+  transition:transform .22s, box-shadow .22s;
+  border:1px solid rgba(30,42,68,.06);
+}
+.card:hover{transform:translateY(-5px);box-shadow:0 18px 40px rgba(30,42,68,.16);}
+.card-media{position:relative;aspect-ratio:5/4;background:var(--paper);}
+.card-media img{width:100%;height:100%;object-fit:cover;}
+.best-badge{
+  position:absolute;top:12px;right:12px;width:64px;height:64px;border-radius:50%;
+  background:var(--rust);color:#fff;border:2px dashed rgba(255,255,255,.7);
+  display:flex;align-items:center;justify-content:center;text-align:center;
+  font-family:'JetBrains Mono',monospace;font-size:.58rem;font-weight:700;
+  text-transform:uppercase;line-height:1.15;transform:rotate(-12deg);
+  box-shadow:0 4px 10px rgba(0,0,0,.2);
+}
+.stock-pill{
+  position:absolute;bottom:12px;left:12px;padding:4px 12px;border-radius:999px;
+  font-size:.72rem;font-weight:700;font-family:'JetBrains Mono',monospace;
+  text-transform:uppercase;letter-spacing:.03em;
+}
+.stock-pill.tersedia{background:rgba(63,107,79,.14);color:var(--green);}
+.stock-pill.habis{background:rgba(156,61,52,.14);color:var(--red);}
+
+.card-body{padding:18px 18px 20px;display:flex;flex-direction:column;gap:8px;flex:1;}
+.card-kategori{font-size:.7rem;font-family:'JetBrains Mono',monospace;color:var(--gold);text-transform:uppercase;letter-spacing:.06em;}
+.card-body h3{font-size:1.15rem;margin:0;}
+.card-desc{font-size:.86rem;color:var(--ink-soft);margin:0;flex:1;}
+.card-penjual{font-size:.78rem;color:var(--ink-soft);}
+.card-penjual b{color:var(--ink);}
+.card-footer{display:flex;align-items:center;justify-content:space-between;margin-top:6px;}
+.price{font-family:'JetBrains Mono',monospace;font-weight:700;color:var(--navy);font-size:1.05rem;}
+.add-btn{
+  background:var(--navy);color:#fff;padding:9px 16px;border-radius:10px;font-size:.85rem;font-weight:600;
+  display:flex;align-items:center;gap:6px;transition:background .2s;
+}
+.add-btn:hover{background:var(--navy-light);}
+.add-btn:disabled{background:#c9c4b4;color:#847e6c;cursor:not-allowed;}
+
+.card-stock-qty{font-size:.72rem;color:var(--ink-soft);font-family:'JetBrains Mono',monospace;}
+.card-stock-qty b{color:var(--navy);}
+
+/* ---------- HALAMAN KERANJANG ---------- */
+.cart-page-grid{display:grid;grid-template-columns:1.4fr 1fr;gap:26px;align-items:start;}
+.cart-list-box{background:var(--paper-white);border-radius:var(--radius);box-shadow:var(--shadow);padding:10px 22px;}
+.cart-item{display:flex;gap:14px;padding:16px 0;border-bottom:1px solid rgba(30,42,68,.08);align-items:center;}
+.cart-item:last-child{border-bottom:none;}
+.cart-item img{width:60px;height:60px;border-radius:12px;object-fit:cover;background:var(--paper);}
+.cart-item-info{flex:1;}
+.cart-item-info h4{margin:0 0 3px;font-size:.95rem;color:var(--navy);}
+.cart-item-info span{font-size:.8rem;color:var(--ink-soft);}
+.qty-ctrl{display:flex;align-items:center;gap:9px;margin-top:6px;}
+.qty-ctrl button{
+  width:26px;height:26px;border-radius:7px;background:var(--paper);color:var(--navy);font-weight:700;
+}
+.qty-ctrl button:hover{background:var(--gold-light);}
+.remove-item{color:var(--red);font-size:.78rem;font-weight:600;background:none;margin-left:10px;}
+.cart-empty{text-align:center;color:var(--ink-soft);padding:60px 10px;}
+#cartSummaryBox .checkout-btn{margin-top:16px;}
+
+/* ---------- DATABASE PESANAN (RIWAYAT) ---------- */
+.db-section{margin-top:40px;}
+.db-head{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:16px;}
+.db-head p{margin-top:6px;}
+.db-actions{display:flex;gap:10px;flex-wrap:wrap;}
+.db-btn{
+  background:var(--navy);color:#fff;padding:9px 16px;border-radius:10px;font-size:.82rem;font-weight:600;
+  transition:background .2s;white-space:nowrap;
+}
+.db-btn:hover{background:var(--navy-light);}
+.db-btn-danger{background:transparent;color:var(--red);border:1.5px solid var(--red);}
+.db-btn-danger:hover{background:var(--red);color:#fff;}
+.db-table-wrap{
+  background:var(--paper-white);border-radius:var(--radius);box-shadow:var(--shadow);
+  overflow-x:auto;margin-top:18px;
+}
+.db-table{width:100%;border-collapse:collapse;font-size:.82rem;min-width:720px;}
+.db-table thead th{
+  text-align:left;background:var(--paper);color:var(--navy);font-weight:700;
+  padding:10px 14px;border-bottom:2px solid rgba(30,42,68,.12);white-space:nowrap;
+}
+.db-table tbody td{padding:10px 14px;border-bottom:1px solid rgba(30,42,68,.08);color:var(--ink);white-space:nowrap;}
+.db-table tbody tr:last-child td{border-bottom:none;}
+.db-table tbody tr:hover{background:var(--gold-light);}
+.db-empty{text-align:center;color:var(--ink-soft);padding:26px 10px;white-space:normal;}
+.db-status{
+  display:inline-block;padding:3px 10px;border-radius:999px;font-size:.72rem;font-weight:700;
+  background:var(--gold-light);color:var(--navy);
+}
+
+/* ---------- HALAMAN TENTANG ---------- */
+.about-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;}
+.about-card{
+  background:var(--paper-white);border-radius:var(--radius);padding:26px 22px;
+  box-shadow:var(--shadow);border-top:4px solid var(--gold);
+}
+.about-stamp{
+  font-family:'JetBrains Mono',monospace;font-weight:700;color:var(--rust);font-size:1.4rem;margin-bottom:10px;
+}
+.about-card p{color:var(--ink-soft);font-size:.92rem;margin:0;}
+
+/* ---------- HALAMAN KELOMPOK ---------- */
+.team-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
+.team-card{
+  background:var(--paper-white);border-radius:var(--radius);padding:30px 20px;text-align:center;
+  box-shadow:var(--shadow);border:1px solid rgba(30,42,68,.06);
+}
+.team-avatar{
+  width:78px;height:78px;border-radius:50%;margin:0 auto 16px;
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Fraunces',serif;font-weight:700;font-size:1.5rem;color:#fff;
+  border:3px dashed rgba(255,255,255,.6);box-shadow:0 6px 16px rgba(0,0,0,.15);
+}
+.team-card h3{margin:0 0 4px;font-size:1.1rem;}
+.team-role{font-size:.8rem;color:var(--ink-soft);font-family:'JetBrains Mono',monospace;}
+
+.empty-state{
+  grid-column:1/-1;text-align:center;padding:60px 20px;color:var(--ink-soft);
+}
+.empty-state .stamp-decor-static{
+  width:100px;height:100px;border:3px dashed var(--rust);border-radius:50%;
+  margin:0 auto 18px;display:flex;align-items:center;justify-content:center;
+  color:var(--rust);font-family:'JetBrains Mono',monospace;font-size:.62rem;font-weight:700;
+  text-transform:uppercase;transform:rotate(-8deg);
+}
+
+/* ---------- ORDER SECTION ---------- */
+.order-section{background:var(--navy);color:var(--paper-white);}
+.order-section h2{color:#fff;}
+.order-section .section-head p{color:rgba(251,249,243,.75);}
+.order-grid{display:grid;grid-template-columns:1fr 1fr;gap:34px;align-items:start;}
+
+.order-form{
+  background:var(--paper-white);color:var(--ink);border-radius:var(--radius);
+  padding:28px;box-shadow:var(--shadow);
+}
+.field{margin-bottom:18px;}
+.field label{display:block;font-size:.85rem;font-weight:600;margin-bottom:6px;color:var(--navy);}
+.field input, .field select{
+  width:100%;padding:11px 13px;border-radius:10px;border:1.5px solid rgba(30,42,68,.15);
+  font-family:inherit;font-size:.95rem;background:var(--paper-white);color:var(--ink);
+}
+.field input:focus, .field select:focus{outline:none;border-color:var(--gold);}
+.field-error{color:var(--red);font-size:.78rem;margin-top:5px;display:none;}
+.field.invalid input, .field.invalid select{border-color:var(--red);}
+.field.invalid .field-error{display:block;}
+.submit-btn{
+  width:100%;background:var(--rust);color:#fff;padding:13px;border-radius:11px;
+  font-weight:700;font-size:.98rem;margin-top:6px;transition:background .2s;
+}
+.submit-btn:hover{background:#8c3a25;}
+
+.receipt{
+  background:var(--paper-white);color:var(--ink);border-radius:var(--radius);
+  padding:28px;font-family:'JetBrains Mono',monospace;font-size:.88rem;
+  border:2px dashed rgba(30,42,68,.25);position:relative;
+}
+.receipt h3{font-family:'Fraunces',serif;font-size:1.1rem;margin-bottom:14px;}
+.receipt-row{display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px dashed rgba(30,42,68,.15);}
+.receipt-row.total{border-bottom:none;font-weight:700;font-size:1rem;margin-top:8px;padding-top:12px;border-top:2px solid var(--navy);color:var(--navy);}
+.receipt-empty{color:var(--ink-soft);text-align:center;padding:30px 10px;}
+.receipt-stamp{
+  position:absolute;top:18px;right:18px;width:70px;height:70px;border-radius:50%;
+  border:2px dashed var(--green);color:var(--green);display:none;align-items:center;justify-content:center;
+  text-align:center;font-size:.55rem;font-weight:700;text-transform:uppercase;transform:rotate(-14deg);
+}
+.receipt-stamp.show{display:flex;}
+
+/* ---------- CART DRAWER ---------- */
+.overlay{
+  position:fixed;inset:0;background:rgba(30,42,68,.45);opacity:0;pointer-events:none;
+  transition:opacity .25s;z-index:90;
+}
+.overlay.show{opacity:1;pointer-events:auto;}
+.cart-drawer{
+  position:fixed;top:0;right:-400px;width:360px;max-width:90vw;height:100%;
+  background:var(--paper-white);z-index:95;box-shadow:-10px 0 30px rgba(0,0,0,.2);
+  transition:right .28s ease;display:flex;flex-direction:column;
+}
+.cart-drawer.open{right:0;}
+.cart-drawer-head{
+  padding:20px 22px;border-bottom:1px solid rgba(30,42,68,.1);
+  display:flex;align-items:center;justify-content:space-between;
+}
+.cart-drawer-head h3{margin:0;}
+.close-btn{background:none;color:var(--ink-soft);font-size:1.3rem;line-height:1;padding:4px;}
+.cart-items{flex:1;overflow-y:auto;padding:14px 22px;}
+.cart-item{display:flex;gap:12px;padding:12px 0;border-bottom:1px solid rgba(30,42,68,.08);align-items:center;}
+.cart-item img{width:52px;height:52px;border-radius:10px;object-fit:cover;background:var(--paper);}
+.cart-item-info{flex:1;}
+.cart-item-info h4{margin:0 0 3px;font-size:.9rem;color:var(--navy);}
+.cart-item-info span{font-size:.78rem;color:var(--ink-soft);}
+.qty-ctrl{display:flex;align-items:center;gap:8px;}
+.qty-ctrl button{
+  width:24px;height:24px;border-radius:6px;background:var(--paper);color:var(--navy);font-weight:700;
+}
+.remove-item{color:var(--red);font-size:.75rem;font-weight:600;background:none;margin-left:8px;}
+.cart-empty{text-align:center;color:var(--ink-soft);padding:50px 10px;}
+.cart-footer{padding:18px 22px;border-top:1px solid rgba(30,42,68,.1);}
+.cart-footer .receipt-row.total{border-top:none;padding-top:0;margin-top:0;}
+.checkout-btn{
+  width:100%;background:var(--navy);color:#fff;padding:13px;border-radius:11px;font-weight:700;margin-top:12px;
+}
+.checkout-btn:hover{background:var(--navy-light);}
+.toast{
+  position:fixed;bottom:26px;left:50%;transform:translateX(-50%) translateY(20px);
+  background:var(--navy);color:#fff;padding:13px 22px;border-radius:12px;font-weight:600;font-size:.9rem;
+  opacity:0;pointer-events:none;transition:all .3s;z-index:120;box-shadow:var(--shadow);
+  display:flex;align-items:center;gap:10px;
+}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
+
+/* ---------- FOOTER ---------- */
+.site-footer{background:var(--navy);color:rgba(251,249,243,.7);padding:34px 0;font-size:.85rem;}
+.site-footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;}
+.site-footer strong{color:#fff;}
+
+/* ---------- RESPONSIVE ---------- */
+@media (max-width:960px){
+  .hero .wrap{grid-template-columns:1fr;}
+  .hero-stamps{display:none;}
+  .product-grid{grid-template-columns:repeat(2,1fr);}
+  .order-grid{grid-template-columns:1fr;}
+  .cart-page-grid{grid-template-columns:1fr;}
+  .about-grid{grid-template-columns:1fr;}
+  .team-grid{grid-template-columns:1fr;}
+  .stat-row{grid-template-columns:repeat(2,1fr);}
+  .main-nav{
+    display:none;position:absolute;top:100%;left:0;right:0;background:var(--navy);
+    flex-direction:column;padding:14px 24px;gap:14px;box-shadow:0 12px 20px rgba(0,0,0,.2);
+  }
+  .main-nav.open{display:flex;}
+  .hamburger{display:block;}
+}
+@media (max-width:600px){
+  .product-grid{grid-template-columns:1fr;}
+  .hero h1{font-size:2rem;}
+  .stat-row{grid-template-columns:1fr 1fr;}
+}
+
+/* Accessibility: focus visibility */
+a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible{
+  outline:3px solid var(--gold);outline-offset:2px;
+}
+@media (prefers-reduced-motion: reduce){
+  *{transition:none !important;scroll-behavior:auto !important;}
+}
+
+/* ---------- PENYESUAIAN KONTRAS TEKS UNTUK MODE GELAP ----------
+   Beberapa teks memakai warna --navy agar terbaca di atas kartu terang.
+   Di mode gelap, kartu (--paper-white) menjadi gelap, jadi teks itu
+   dialihkan memakai --ink (yang otomatis sudah terang di mode gelap). */
+[data-theme="dark"] h1,
+[data-theme="dark"] h2,
+[data-theme="dark"] h3,
+[data-theme="dark"] .cart-item-info h4,
+[data-theme="dark"] .price,
+[data-theme="dark"] .qty-ctrl button,
+[data-theme="dark"] .field label,
+[data-theme="dark"] .receipt-row.total,
+[data-theme="dark"] .db-table thead th,
+[data-theme="dark"] .result-count strong{
+  color:var(--ink);
+}
+[data-theme="dark"] .receipt-row.total{
+  border-top-color:var(--ink);
+}
+[data-theme="dark"] .card,
+[data-theme="dark"] .stat-box,
+[data-theme="dark"] .filter-bar-inline,
+[data-theme="dark"] .cart-list-box,
+[data-theme="dark"] .db-table-wrap,
+[data-theme="dark"] .about-card,
+[data-theme="dark"] .team-card,
+[data-theme="dark"] .order-form,
+[data-theme="dark"] .receipt,
+[data-theme="dark"] .cart-drawer{
+  border-color:rgba(255,255,255,.08);
+}
+[data-theme="dark"] .field input,
+[data-theme="dark"] .field select{
+  border-color:rgba(255,255,255,.14);
+}
+[data-theme="dark"] ::selection{
+  background:var(--gold);color:var(--navy);
+}
+
+/* Transisi halus saat berpindah tema */
+body, .card, .stat-box, .filter-bar-inline, .cart-list-box, .db-table-wrap,
+.about-card, .team-card, .order-form, .receipt, .cart-drawer, .chip,
+.field input, .field select, .db-table{
+  transition:background-color .3s ease, color .3s ease, border-color .3s ease;
+}

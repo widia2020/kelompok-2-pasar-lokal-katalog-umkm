@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pasar Lokal — Katalog Produk UMKM Aceh</title>
+<script>
+  /* Set tema (gelap/terang) sedini mungkin agar tidak ada "kedipan" warna saat halaman dimuat */
+  (function () {
+    try {
+      var tersimpan = localStorage.getItem("pl-tema");
+      var tema = tersimpan || (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+      document.documentElement.setAttribute("data-theme", tema);
+    } catch (e) {
+      document.documentElement.setAttribute("data-theme", "light");
+    }
+  })();
+</script>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- HEADER / NAVIGASI 6 BERANDA -->
+<header class="site-header">
+  <div class="wrap">
+    <div class="brand">
+      <span class="stamp-mini">PL</span>
+      Pasar Lokal
+    </div>
+    <nav class="main-nav" id="mainNav">
+      <a href="#" data-page="beranda" class="active">Beranda</a>
+      <a href="#" data-page="produk">Produk</a>
+      <a href="#" data-page="keranjang">Keranjang <span class="nav-badge" id="navCartCount">0</span></a>
+      <a href="#" data-page="pesan">Pesan</a>
+      <a href="#" data-page="tentang">Tentang</a>
+      <a href="#" data-page="kelompok">Kelompok</a>
+    </nav>
+    <button class="theme-toggle" id="themeToggle" title="Ganti mode gelap/terang" aria-label="Ganti mode gelap/terang">
+      <span id="themeIcon">🌙</span>
+    </button>
+    <button class="hamburger" id="hamburger" aria-label="Buka menu">☰</button>
+  </div>
+</header>
+
+<!-- ============ 1. BERANDA ============ -->
+<section class="page active" id="page-beranda">
+  <div class="hero">
+    <div class="wrap">
+      <div>
+        <span class="hero-eyebrow">Kelompok 2 · Katalog Digital UMKM</span>
+        <h1>Belanja produk <em>asli buatan warung</em> &amp; pengrajin sekitarmu.</h1>
+        <p>Pasar Lokal menghimpun makanan, minuman, kerajinan, dan fashion khas UMKM Aceh dalam satu etalase, lengkap dengan info stok terkini dari setiap penjual.</p>
+        <form class="search-box" id="searchFormHero" role="search">
+          <input type="text" id="searchInputHero" placeholder="Cari nama produk, misal: kopi, tas, batik...">
+          <button type="submit">Cari</button>
+        </form>
+      </div>
+      <div class="hero-stamps" aria-hidden="true">
+        <div class="stamp-decor s1">Asli<br>Produk<br>UMKM</div>
+        <div class="stamp-decor s2">Buatan<br>Tangan</div>
+        <div class="stamp-decor s3">Lokal</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="wrap">
+      <div class="stat-row" id="statRow"></div>
+    </div>
+  </div>
+
+  <div class="section" style="padding-top:0;">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <h2>Produk Best Seller</h2>
+          <p>Paling laris minggu ini menurut para penjual UMKM.</p>
+        </div>
+        <button class="chip chip-link" data-goto="produk">Lihat Semua Produk →</button>
+      </div>
+      <div class="product-grid" id="bestSellerGrid"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 2. PRODUK ============ -->
+<section class="page" id="page-produk">
+  <div class="section" style="padding-top:38px;">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <h2>Etalase Produk</h2>
+          <p>Semua produk UMKM lokal, lengkap dengan kategori dan stok terkini.</p>
+        </div>
+      </div>
+
+      <div class="filter-bar-inline">
+        <form class="search-box" id="searchForm" role="search">
+          <input type="text" id="searchInput" placeholder="Cari nama produk...">
+          <button type="submit">Cari</button>
+        </form>
+        <div class="filter-group">
+          <span class="filter-label">Kategori</span>
+          <button class="chip active" data-filter-kategori="Semua">Semua</button>
+          <button class="chip" data-filter-kategori="Makanan">Makanan</button>
+          <button class="chip" data-filter-kategori="Minuman">Minuman</button>
+          <button class="chip" data-filter-kategori="Kerajinan">Kerajinan</button>
+          <button class="chip" data-filter-kategori="Fashion">Fashion</button>
+        </div>
+        <div class="filter-group">
+          <span class="filter-label">Stok</span>
+          <button class="chip active" data-filter-stok="Semua">Semua</button>
+          <button class="chip" data-filter-stok="Tersedia">Tersedia</button>
+          <button class="chip" data-filter-stok="Habis">Habis</button>
+        </div>
+        <div class="result-count" id="resultCount"></div>
+      </div>
+
+      <div class="product-grid" id="productGrid"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 3. KERANJANG ============ -->
+<section class="page" id="page-keranjang">
+  <div class="section" style="padding-top:38px;">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <h2>Keranjang Belanja (Simulasi)</h2>
+          <p>Produk yang sudah kamu tambahkan dari halaman Produk akan muncul di sini.</p>
+        </div>
+      </div>
+
+      <div class="cart-page-grid">
+        <div class="cart-list-box" id="cartItems">
+          <div class="cart-empty">Keranjang masih kosong.<br>Tambahkan produk dari halaman Produk.</div>
+        </div>
+        <div class="receipt" id="cartSummaryBox" style="display:none;">
+          <h3>Ringkasan Keranjang</h3>
+          <div class="receipt-row"><span>Jumlah Item</span><span id="cartItemCount">0</span></div>
+          <div class="receipt-row total"><span>Total</span><span class="mono" id="cartTotal">Rp 0</span></div>
+
+          <div class="field" id="fieldCartNama" style="margin-top:16px;">
+            <label for="cartNamaPembeli">Nama Pembeli</label>
+            <input type="text" id="cartNamaPembeli" placeholder="Contoh: Muhammad Rizki">
+            <div class="field-error">Nama wajib diisi.</div>
+          </div>
+          <div class="field" id="fieldCartHp">
+            <label for="cartNoHp">Nomor HP</label>
+            <input type="tel" id="cartNoHp" placeholder="Contoh: 081234567890">
+            <div class="field-error">Nomor HP wajib diisi dan hanya boleh berupa angka.</div>
+          </div>
+
+          <button class="checkout-btn" id="checkoutBtn">Checkout (Simulasi)</button>
+        </div>
+      </div>
+
+      <div class="db-section">
+        <div class="section-head db-head">
+          <div>
+            <h2>Riwayat Pesanan (Database)</h2>
+            <p>Setiap checkout tersimpan otomatis ke database <span class="mono">pesanan</span> di browser ini (localStorage), sesuai struktur tabel pada folder <span class="mono">database/</span>.</p>
+          </div>
+          <div class="db-actions">
+            <button class="db-btn" id="downloadDbBtn">⬇ Unduh Database (.sql)</button>
+            <button class="db-btn db-btn-danger" id="clearDbBtn">🗑 Kosongkan Riwayat</button>
+          </div>
+        </div>
+        <div class="db-table-wrap">
+          <table class="db-table" id="dbTable">
+            <thead>
+              <tr>
+                <th>ID</th><th>Pembeli</th><th>No HP</th><th>Produk</th>
+                <th>Jumlah</th><th>Total</th><th>Status</th><th>Waktu</th>
+              </tr>
+            </thead>
+            <tbody id="dbTableBody">
+              <tr><td colspan="8" class="db-empty">Belum ada data pesanan.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 4. PESAN ============ -->
+<section class="page" id="page-pesan">
+  <div class="section order-section" style="padding-top:38px;">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <h2>Form Pemesanan</h2>
+          <p>Isi data di bawah untuk membuat pesanan sederhana. Ringkasan akan muncul otomatis di sebelah kanan.</p>
+        </div>
+      </div>
+      <div class="order-grid">
+        <form class="order-form" id="orderForm" novalidate>
+          <div class="field" id="fieldNama">
+            <label for="namaPembeli">Nama Pembeli</label>
+            <input type="text" id="namaPembeli" placeholder="Contoh: Muhammad Rizki">
+            <div class="field-error">Nama wajib diisi.</div>
+          </div>
+          <div class="field" id="fieldHp">
+            <label for="noHp">Nomor HP</label>
+            <input type="tel" id="noHp" placeholder="Contoh: 081234567890">
+            <div class="field-error">Nomor HP wajib diisi dan hanya boleh berupa angka.</div>
+          </div>
+          <div class="field" id="fieldProduk">
+            <label for="produkPilih">Pilih Produk</label>
+            <select id="produkPilih">
+              <option value="">-- Pilih salah satu produk --</option>
+            </select>
+            <div class="field-error">Silakan pilih salah satu produk.</div>
+          </div>
+          <div class="field" id="fieldJumlah">
+            <label for="jumlahPesan">Jumlah Pesanan</label>
+            <input type="number" id="jumlahPesan" min="1" value="1">
+            <div class="field-error">Jumlah pesanan minimal 1.</div>
+          </div>
+          <button type="submit" class="submit-btn">Buat Pesanan</button>
+        </form>
+
+        <div class="receipt" id="receipt">
+          <div class="receipt-stamp" id="receiptStamp">Pesanan<br>Diterima</div>
+          <h3>Ringkasan Pesanan</h3>
+          <div id="receiptBody">
+            <div class="receipt-empty">Belum ada pesanan.<br>Isi form di sebelah kiri untuk melihat ringkasan di sini.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 5. TENTANG ============ -->
+<section class="page" id="page-tentang">
+  <div class="section" style="padding-top:38px;">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <h2>Tentang Pasar Lokal</h2>
+          <p>Mengenal lebih dekat tujuan dibuatnya katalog ini.</p>
+        </div>
+      </div>
+      <div class="about-grid">
+        <div class="about-card">
+          <div class="about-stamp">01</div>
+          <h3>Tema</h3>
+          <p>Website katalog produk UMKM lokal seperti makanan, minuman, kerajinan, pakaian, dan produk khas daerah.</p>
+        </div>
+        <div class="about-card">
+          <div class="about-stamp">02</div>
+          <h3>Latar Belakang</h3>
+          <p>UMKM lokal membutuhkan media promosi digital sederhana agar produk lebih mudah dikenal oleh masyarakat luas.</p>
+        </div>
+        <div class="about-card">
+          <div class="about-stamp">03</div>
+          <h3>Target Pengguna</h3>
+          <p>Pelaku UMKM, pembeli, dan masyarakat umum yang ingin mengenal serta membeli produk lokal dengan mudah.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 6. KELOMPOK ============ -->
+<section class="page" id="page-kelompok">
+  <div class="section" style="padding-top:38px;">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <h2>Data Kelompok 2</h2>
+          <p>Tugas Akhir Proyek — Mata Kuliah Pemrograman Web 1</p>
+        </div>
+      </div>
+      <div class="team-grid">
+        <div class="team-card">
+          <div class="team-avatar" style="background:#C89B3C;">WE</div>
+          <h3>Widia Erika</h3>
+          <span class="team-role">Anggota Kelompok 2</span>
+        </div>
+        <div class="team-card">
+          <div class="team-avatar" style="background:#A6432B;">DS</div>
+          <h3>Dina Syahirah</h3>
+          <span class="team-role">Anggota Kelompok 2</span>
+        </div>
+        <div class="team-card">
+          <div class="team-avatar" style="background:#3F6B4F;">LM</div>
+          <h3>Liza Marfirah</h3>
+          <span class="team-role">Anggota Kelompok 2</span>
+        </div>
+      </div>
+      <div class="about-card" style="margin-top:28px;">
+        <div class="about-stamp">📚</div>
+        <h3>Skenario Tugas</h3>
+        <p>Skenario Tugas Proyek Akhir — Pemrograman Web 1. Website "Pasar Lokal" dibuat sebagai simulasi katalog produk UMKM lengkap dengan fitur pencarian, filter, form pemesanan, validasi, ringkasan pesanan, dan keranjang belanja simulasi.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <div class="wrap">
+    <div><strong>Pasar Lokal</strong> — Katalog Produk UMKM Lokal</div>
+    <div>Tugas Akhir Pemrograman Web 1 · Kelompok 2</div>
+  </div>
+</footer>
+
+<div class="toast" id="toast"></div>
+
+<script src="script.js"></script>
+</body>
+</html>
